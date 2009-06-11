@@ -1,18 +1,38 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
-class PayPal_ExpressCheckout_Core extends PayPal {
+/**
+ * PayPal ExpressCheckout integration.
+ *
+ * @see  https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_ECGettingStarted
+ *
+ * @package    Kohana
+ * @author     Kohana Team
+ * @copyright  (c) 2009 Kohana Team
+ * @license    http://kohanaphp.com/license.html
+ */
+class PayPal_ExpressCheckout extends PayPal {
 
 	// Default parameters
 	protected $_default = array(
-
 		'PAYMENTACTION' => 'Sale',
-
 	);
 
-	public function set(array $params)
+	/**
+	 * Make an SetExpressCheckout call.
+	 *
+	 * @param  array   NVP parameters
+	 */
+	public function set(array $params = NULL)
 	{
-		// Add the default parameters
-		$params += $this->_default;
+		if ($params === NULL)
+		{
+			// Use the default parameters
+			$params = $this->_default;
+		}
+		else
+		{
+			// Add the default parameters
+			$params += $this->_default;
+		}
 
 		if ( ! isset($params['AMT']))
 		{
