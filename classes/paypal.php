@@ -49,7 +49,7 @@ abstract class PayPal_Core {
 	protected $_signature;
 
 	// Environment type
-	protected $_environment = FALSE;
+	protected $_environment = 'live';
 
 	public function __construct($username, $password, $signature, $environment = 'live')
 	{
