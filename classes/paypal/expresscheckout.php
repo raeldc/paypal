@@ -23,26 +23,4 @@ class PayPal_ExpressCheckout_Core extends PayPal {
 		return $this->_post('SetExpressCheckout', $params);
 	}
 
-	public function redirect_url($token)
-	{
-		if ($this->_environment === 'live')
-		{
-			// Live environment does not use a sub-domain
-			$env = '';
-		}
-		else
-		{
-			// Use the environment sub-domain
-			$env = $this->_environment.'.';
-		}
-
-		// Request parameters
-		$params = array(
-			'cmd'   => '_express-checkout',
-			'token' => $token
-		);
-
-		return 'https://www.'.$env.'paypal.com/webscr?'.http_build_query($params, NULL, '&');
-	}
-
 } // End PayPal_ExpressCheckout
