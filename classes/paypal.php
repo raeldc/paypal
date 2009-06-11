@@ -1,12 +1,30 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
+/**
+ * Abstract PayPal integration.
+ *
+ * @see  https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/library_documentation
+ *
+ * @package    Kohana
+ * @author     Kohana Team
+ * @copyright  (c) 2009 Kohana Team
+ * @license    http://kohanaphp.com/license.html
+ */
 abstract class PayPal_Core {
 
-	public $instances = array();
+	/**
+	 * @var  array  instances
+	 */
+	public static $instances = array();
 
+	/**
+	 * Returns a singleton instance of one of the PayPal classes.
+	 *
+	 * @param   string  class type (ExpressCheckout, PaymentsPro, etc)
+	 * @return  object
+	 */
 	public static function instance($type)
 	{
-		if ( ! isset($instances[$type]))
+		if ( ! isset(PayPal::$instances[$type]))
 		{
 			// Set the class name
 			$class = 'PayPal_'.$type;
@@ -15,10 +33,10 @@ abstract class PayPal_Core {
 			$config = Kohana::config('paypal');
 
 			// Create a new PayPal instance with the default configuration
-			$instances[$type] = new $class($config['username'], $config['password'], $config['signature'], $config['environment']);
+			PayPal::$instances[$type] = new $class($config['username'], $config['password'], $config['signature'], $config['environment']);
 		}
 
-		return $instances[$type];
+		return PayPal::$instances[$type];
 	}
 
 	// API username
