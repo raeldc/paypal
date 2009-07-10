@@ -2,14 +2,14 @@
 /**
  * Abstract PayPal integration.
  *
- * @see  https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/library_documentation
+ * @link  https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/library_documentation
  *
  * @package    Kohana
  * @author     Kohana Team
  * @copyright  (c) 2009 Kohana Team
  * @license    http://kohanaphp.com/license.html
  */
-abstract class PayPal_Core {
+abstract class PayPal {
 
 	/**
 	 * @var  array  instances
